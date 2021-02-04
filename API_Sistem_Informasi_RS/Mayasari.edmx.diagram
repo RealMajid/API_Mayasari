@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="10a745e3f0774852b4970ff268a91c75" Name="Diagram1">
+        <EntityTypeShape EntityType="klinikModel.DOKTER" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.KASU" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.ORDER_MEDIS" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.PASIEN" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.PEMERIKSAAN" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.REGISTER_KASUS" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.REKAM_MEDIS" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.ROLE" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.SPESIALISASI" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.USER" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="klinikModel.T_KASUS" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="klinikModel.FK_DOKTER_SPESIALISASI" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_DOKTER_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_PEMERIKSAAN_DOKTER" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_T_KASUS_KASUS" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_ORDER_MEDIS_PEMERIKSAAN" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_PASIEN_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_T_KASUS_PASIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_PEMERIKSAAN_REKAM_MEDIS" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.FK_T_KASUS_REGISTER_KASUS" ManuallyRouted="false" />
+        <AssociationConnector Association="klinikModel.ROLE_USERS" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="klinikModel.KLINIK" Width="1.5" PointX="5.25" PointY="19.625" />
+        <AssociationConnector Association="klinikModel.FK_KLINIK_SPESIALISASI" />
+        <AssociationConnector Association="klinikModel.FK_REGISTER_KASUS_KLINIK" />
+        <EntityTypeShape EntityType="klinikModel.VW_REGISTER_KASUS" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="klinikModel.KASUS_STAT" Width="1.5" PointX="7.5" PointY="0.75" />
+        <AssociationConnector Association="klinikModel.FK_KASUS_STAT_KASUS" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

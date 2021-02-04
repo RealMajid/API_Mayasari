@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mayasariModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DOKTER">
+    <Key>
+      <PropertyRef Name="ID_DOKTER" />
+    </Key>
+    <Property Name="ID_DOKTER" Type="Int32" Nullable="false" />
+    <Property Name="ID_USER" Type="Int32" />
+    <Property Name="ID_SPESIALISASI" Type="Int32" />
+    <Property Name="NAMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PENDIDIKAN" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SPESIALISASI" Relationship="Self.FK_DOKTER_SPESIALISASI" FromRole="DOKTER" ToRole="SPESIALISASI" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_DOKTER_USERS" FromRole="DOKTER" ToRole="USERS" />
+    <NavigationProperty Name="PEMERIKSAANs" Relationship="Self.FK_PEMERIKSAAN_DOKTER" FromRole="DOKTER" ToRole="PEMERIKSAAN" />
+    <Property Name="JENIS_KELAMIN" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="KASU">
+    <Key>
+      <PropertyRef Name="ID_KASUS" />
+    </Key>
+    <Property Name="ID_KASUS" Type="Int32" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="Int32" Nullable="false" />
+    <Property Name="STATUS_KASUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KASUS_STAT" Relationship="Self.FK_KASUS_STAT_KASUS" FromRole="KASUS" ToRole="KASUS_STAT" />
+    <NavigationProperty Name="T_KASUS" Relationship="Self.FK_T_KASUS_KASUS" FromRole="KASUS" ToRole="T_KASUS" />
+  </EntityType>
+  <EntityType Name="KASUS_STAT">
+    <Key>
+      <PropertyRef Name="ID_KASUS_STAT" />
+    </Key>
+    <Property Name="ID_KASUS_STAT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_KASUS" Type="Int32" Nullable="false" />
+    <Property Name="STATUS_KASUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TGL" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="KASU" Relationship="Self.FK_KASUS_STAT_KASUS" FromRole="KASUS_STAT" ToRole="KASUS" />
+  </EntityType>
+  <EntityType Name="KLINIK">
+    <Key>
+      <PropertyRef Name="ID_KLINIK" />
+    </Key>
+    <Property Name="ID_KLINIK" Type="Int32" Nullable="false" />
+    <Property Name="NAMA_KLINIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_SPESIALISASI" Type="Int32" />
+    <NavigationProperty Name="SPESIALISASI" Relationship="Self.FK_KLINIK_SPESIALISASI" FromRole="KLINIK" ToRole="SPESIALISASI" />
+    <NavigationProperty Name="REGISTER_KASUS" Relationship="Self.FK_REGISTER_KASUS_KLINIK" FromRole="KLINIK" ToRole="REGISTER_KASUS" />
+  </EntityType>
+  <EntityType Name="ORDER_MEDIS">
+    <Key>
+      <PropertyRef Name="ID_ORDER" />
+    </Key>
+    <Property Name="ID_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="Int32" />
+    <Property Name="ID_PASIEN" Type="Int32" />
+    <NavigationProperty Name="PEMERIKSAAN" Relationship="Self.FK_ORDER_MEDIS_PEMERIKSAAN" FromRole="ORDER_MEDIS" ToRole="PEMERIKSAAN" />
+    <Property Name="ID_OBAT" Type="Int32" />
+    <Property Name="ID_LABORAT" Type="Int32" />
+    <NavigationProperty Name="LAB" Relationship="mayasariModel.FK_ORDER_MEDIS_LAB" FromRole="ORDER_MEDIS" ToRole="LAB" />
+    <NavigationProperty Name="OBAT" Relationship="mayasariModel.FK_ORDER_MEDIS_OBAT" FromRole="ORDER_MEDIS" ToRole="OBAT" />
+    <Property Name="JUMLAH" Type="Int32" />
+    <Property Name="JENIS_ORDER_MEDIS" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PASIEN">
+    <Key>
+      <PropertyRef Name="ID_PASIEN" />
+    </Key>
+    <Property Name="ID_PASIEN" Type="Int32" Nullable="false" />
+    <Property Name="ID_USER" Type="Int32" />
+    <Property Name="NAMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TGL_LAHIR" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ALAMAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JENIS_KELAMIN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TELP" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TEMPAT_LAHIR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_PASIEN_USERS" FromRole="PASIEN" ToRole="USERS" />
+    <NavigationProperty Name="T_KASUS" Relationship="Self.FK_T_KASUS_PASIEN" FromRole="PASIEN" ToRole="T_KASUS" />
+  </EntityType>
+  <EntityType Name="PEMERIKSAAN">
+    <Key>
+      <PropertyRef Name="ID_PEMERIKSAAN" />
+    </Key>
+    <Property Name="ID_PEMERIKSAAN" Type="Int32" Nullable="false" />
+    <Property Name="ID_DOKTER" Type="Int32" />
+    <Property Name="ID_REKAM_MEDIS" Type="Int32" />
+    <Property Name="TGL" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RUANGAN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DOKTER" Relationship="Self.FK_PEMERIKSAAN_DOKTER" FromRole="PEMERIKSAAN" ToRole="DOKTER" />
+    <NavigationProperty Name="ORDER_MEDIS" Relationship="Self.FK_ORDER_MEDIS_PEMERIKSAAN" FromRole="PEMERIKSAAN" ToRole="ORDER_MEDIS" />
+    <NavigationProperty Name="REKAM_MEDIS" Relationship="Self.FK_PEMERIKSAAN_REKAM_MEDIS" FromRole="PEMERIKSAAN" ToRole="REKAM_MEDIS" />
+  </EntityType>
+  <EntityType Name="REGISTER_KASUS">
+    <Key>
+      <PropertyRef Name="REG_NO" />
+    </Key>
+    <Property Name="REG_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KELUHAN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TINGGI_BADAN" Type="Int32" />
+    <Property Name="BERAT_BADAN" Type="Int32" />
+    <Property Name="TENSI_DARAH" Type="Int32" />
+    <Property Name="ID_KLINIK" Type="Int32" />
+    <NavigationProperty Name="KLINIK" Relationship="Self.FK_REGISTER_KASUS_KLINIK" FromRole="REGISTER_KASUS" ToRole="KLINIK" />
+    <NavigationProperty Name="T_KASUS" Relationship="Self.FK_T_KASUS_REGISTER_KASUS" FromRole="REGISTER_KASUS" ToRole="T_KASUS" />
+  </EntityType>
+  <EntityType Name="REKAM_MEDIS">
+    <Key>
+      <PropertyRef Name="ID_REKAM_MEDIS" />
+    </Key>
+    <Property Name="ID_REKAM_MEDIS" Type="Int32" Nullable="false" />
+    <Property Name="GEJALA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TINDAKAN" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VONIS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PEMERIKSAANs" Relationship="Self.FK_PEMERIKSAAN_REKAM_MEDIS" FromRole="REKAM_MEDIS" ToRole="PEMERIKSAAN" />
+    <Property Name="DIAGNOSA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="HASIL_TEST_LAB" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID_ROLE" />
+    </Key>
+    <Property Name="ID_ROLE" Type="Int32" Nullable="false" />
+    <Property Name="NAMA_ROLE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USERS" Relationship="Self.ROLE_USERS" FromRole="ROLES" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="SPESIALISASI">
+    <Key>
+      <PropertyRef Name="ID_SPESIALISASI" />
+    </Key>
+    <Property Name="ID_SPESIALISASI" Type="Int32" Nullable="false" />
+    <Property Name="JENIS_SPESIALISASI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DOKTERs" Relationship="Self.FK_DOKTER_SPESIALISASI" FromRole="SPESIALISASI" ToRole="DOKTER" />
+    <NavigationProperty Name="KLINIKs" Relationship="Self.FK_KLINIK_SPESIALISASI" FromRole="SPESIALISASI" ToRole="KLINIK" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_KASUS">
+    <Key>
+      <PropertyRef Name="REG_NO" />
+    </Key>
+    <Property Name="REG_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_KASUS" Type="Int32" Nullable="false" />
+    <Property Name="ID_PASIEN" Type="Int32" Nullable="false" />
+    <Property Name="VRF_DATA_PASIEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VRF_KELUHAN_PASIEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VRF_HISTORICAL_DATA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TGL_MASUK" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="KASU" Relationship="Self.FK_T_KASUS_KASUS" FromRole="T_KASUS" ToRole="KASUS" />
+    <NavigationProperty Name="PASIEN" Relationship="Self.FK_T_KASUS_PASIEN" FromRole="T_KASUS" ToRole="PASIEN" />
+    <NavigationProperty Name="REGISTER_KASUS" Relationship="Self.FK_T_KASUS_REGISTER_KASUS" FromRole="T_KASUS" ToRole="REGISTER_KASUS" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="ID_USER" />
+    </Key>
+    <Property Name="ID_USER" Type="Int32" Nullable="false" />
+    <Property Name="USERNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LAST_LOGIN" Type="DateTime" Precision="3" />
+    <Property Name="ACTIVE_YN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DOKTERs" Relationship="Self.FK_DOKTER_USERS" FromRole="USERS" ToRole="DOKTER" />
+    <NavigationProperty Name="PASIENs" Relationship="Self.FK_PASIEN_USERS" FromRole="USERS" ToRole="PASIEN" />
+    <NavigationProperty Name="ROLES" Relationship="Self.ROLE_USERS" FromRole="USERS" ToRole="ROLES" />
+  </EntityType>
+  <EntityType Name="VW_REGISTER_KASUS">
+    <Key>
+      <PropertyRef Name="REG_NO" />
+      <PropertyRef Name="PASIEN" />
+      <PropertyRef Name="KELUHAN" />
+    </Key>
+    <Property Name="REG_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASIEN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TGL_MASUK" Type="DateTime" Precision="3" />
+    <Property Name="KELUHAN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAMA_KLINIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOKTER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS_KASUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_DOKTER_SPESIALISASI">
+    <End Role="SPESIALISASI" Type="Self.SPESIALISASI" Multiplicity="0..1" />
+    <End Role="DOKTER" Type="Self.DOKTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPESIALISASI">
+        <PropertyRef Name="ID_SPESIALISASI" />
+      </Principal>
+      <Dependent Role="DOKTER">
+        <PropertyRef Name="ID_SPESIALISASI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOKTER_USERS">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="DOKTER" Type="Self.DOKTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="DOKTER">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEMERIKSAAN_DOKTER">
+    <End Role="DOKTER" Type="Self.DOKTER" Multiplicity="0..1" />
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOKTER">
+        <PropertyRef Name="ID_DOKTER" />
+      </Principal>
+      <Dependent Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_DOKTER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KASUS_STAT_KASUS">
+    <End Role="KASUS" Type="Self.KASU" Multiplicity="1" />
+    <End Role="KASUS_STAT" Type="Self.KASUS_STAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KASUS">
+        <PropertyRef Name="ID_KASUS" />
+      </Principal>
+      <Dependent Role="KASUS_STAT">
+        <PropertyRef Name="ID_KASUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_KASUS_KASUS">
+    <End Role="KASUS" Type="Self.KASU" Multiplicity="1" />
+    <End Role="T_KASUS" Type="Self.T_KASUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KASUS">
+        <PropertyRef Name="ID_KASUS" />
+      </Principal>
+      <Dependent Role="T_KASUS">
+        <PropertyRef Name="ID_KASUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KLINIK_SPESIALISASI">
+    <End Role="SPESIALISASI" Type="Self.SPESIALISASI" Multiplicity="0..1" />
+    <End Role="KLINIK" Type="Self.KLINIK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPESIALISASI">
+        <PropertyRef Name="ID_SPESIALISASI" />
+      </Principal>
+      <Dependent Role="KLINIK">
+        <PropertyRef Name="ID_SPESIALISASI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REGISTER_KASUS_KLINIK">
+    <End Role="KLINIK" Type="Self.KLINIK" Multiplicity="0..1" />
+    <End Role="REGISTER_KASUS" Type="Self.REGISTER_KASUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KLINIK">
+        <PropertyRef Name="ID_KLINIK" />
+      </Principal>
+      <Dependent Role="REGISTER_KASUS">
+        <PropertyRef Name="ID_KLINIK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_MEDIS_PEMERIKSAAN">
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="0..1" />
+    <End Role="ORDER_MEDIS" Type="Self.ORDER_MEDIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Principal>
+      <Dependent Role="ORDER_MEDIS">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PASIEN_USERS">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="PASIEN" Type="Self.PASIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="PASIEN">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_KASUS_PASIEN">
+    <End Role="PASIEN" Type="Self.PASIEN" Multiplicity="1" />
+    <End Role="T_KASUS" Type="Self.T_KASUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PASIEN">
+        <PropertyRef Name="ID_PASIEN" />
+      </Principal>
+      <Dependent Role="T_KASUS">
+        <PropertyRef Name="ID_PASIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEMERIKSAAN_REKAM_MEDIS">
+    <End Role="REKAM_MEDIS" Type="Self.REKAM_MEDIS" Multiplicity="0..1" />
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REKAM_MEDIS">
+        <PropertyRef Name="ID_REKAM_MEDIS" />
+      </Principal>
+      <Dependent Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_REKAM_MEDIS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_KASUS_REGISTER_KASUS">
+    <End Role="REGISTER_KASUS" Type="Self.REGISTER_KASUS" Multiplicity="1" />
+    <End Role="T_KASUS" Type="Self.T_KASUS" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="REGISTER_KASUS">
+        <PropertyRef Name="REG_NO" />
+      </Principal>
+      <Dependent Role="T_KASUS">
+        <PropertyRef Name="REG_NO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ROLE_USERS">
+    <End Role="ROLES" Type="Self.ROLE" Multiplicity="*" />
+    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="mayasariEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DOKTERs" EntityType="Self.DOKTER" />
+    <EntitySet Name="KASUS" EntityType="Self.KASU" />
+    <EntitySet Name="KASUS_STAT" EntityType="Self.KASUS_STAT" />
+    <EntitySet Name="KLINIKs" EntityType="Self.KLINIK" />
+    <EntitySet Name="ORDER_MEDIS" EntityType="Self.ORDER_MEDIS" />
+    <EntitySet Name="PASIENs" EntityType="Self.PASIEN" />
+    <EntitySet Name="PEMERIKSAANs" EntityType="Self.PEMERIKSAAN" />
+    <EntitySet Name="REGISTER_KASUS" EntityType="Self.REGISTER_KASUS" />
+    <EntitySet Name="REKAM_MEDIS" EntityType="Self.REKAM_MEDIS" />
+    <EntitySet Name="ROLES" EntityType="Self.ROLE" />
+    <EntitySet Name="SPESIALISASIs" EntityType="Self.SPESIALISASI" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="T_KASUS" EntityType="Self.T_KASUS" />
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <EntitySet Name="VW_REGISTER_KASUS" EntityType="Self.VW_REGISTER_KASUS" />
+    <AssociationSet Name="FK_DOKTER_SPESIALISASI" Association="Self.FK_DOKTER_SPESIALISASI">
+      <End Role="SPESIALISASI" EntitySet="SPESIALISASIs" />
+      <End Role="DOKTER" EntitySet="DOKTERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOKTER_USERS" Association="Self.FK_DOKTER_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="DOKTER" EntitySet="DOKTERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEMERIKSAAN_DOKTER" Association="Self.FK_PEMERIKSAAN_DOKTER">
+      <End Role="DOKTER" EntitySet="DOKTERs" />
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KASUS_STAT_KASUS" Association="Self.FK_KASUS_STAT_KASUS">
+      <End Role="KASUS" EntitySet="KASUS" />
+      <End Role="KASUS_STAT" EntitySet="KASUS_STAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_KASUS_KASUS" Association="Self.FK_T_KASUS_KASUS">
+      <End Role="KASUS" EntitySet="KASUS" />
+      <End Role="T_KASUS" EntitySet="T_KASUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KLINIK_SPESIALISASI" Association="Self.FK_KLINIK_SPESIALISASI">
+      <End Role="SPESIALISASI" EntitySet="SPESIALISASIs" />
+      <End Role="KLINIK" EntitySet="KLINIKs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REGISTER_KASUS_KLINIK" Association="Self.FK_REGISTER_KASUS_KLINIK">
+      <End Role="KLINIK" EntitySet="KLINIKs" />
+      <End Role="REGISTER_KASUS" EntitySet="REGISTER_KASUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_MEDIS_PEMERIKSAAN" Association="Self.FK_ORDER_MEDIS_PEMERIKSAAN">
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAANs" />
+      <End Role="ORDER_MEDIS" EntitySet="ORDER_MEDIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PASIEN_USERS" Association="Self.FK_PASIEN_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PASIEN" EntitySet="PASIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_KASUS_PASIEN" Association="Self.FK_T_KASUS_PASIEN">
+      <End Role="PASIEN" EntitySet="PASIENs" />
+      <End Role="T_KASUS" EntitySet="T_KASUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEMERIKSAAN_REKAM_MEDIS" Association="Self.FK_PEMERIKSAAN_REKAM_MEDIS">
+      <End Role="REKAM_MEDIS" EntitySet="REKAM_MEDIS" />
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_KASUS_REGISTER_KASUS" Association="Self.FK_T_KASUS_REGISTER_KASUS">
+      <End Role="REGISTER_KASUS" EntitySet="REGISTER_KASUS" />
+      <End Role="T_KASUS" EntitySet="T_KASUS" />
+    </AssociationSet>
+    <AssociationSet Name="ROLE_USERS" Association="Self.ROLE_USERS">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <EntitySet Name="VW_ALOKASI_DOKTER" EntityType="mayasariModel.VW_ALOKASI_DOKTER" />
+    <EntitySet Name="VW_HISTORY_MEDIS_PASIEN" EntityType="mayasariModel.VW_HISTORY_MEDIS_PASIEN" />
+    <EntitySet Name="LABs" EntityType="mayasariModel.LAB" />
+    <EntitySet Name="OBATs" EntityType="mayasariModel.OBAT" />
+    <AssociationSet Name="FK_ORDER_MEDIS_LAB" Association="mayasariModel.FK_ORDER_MEDIS_LAB">
+      <End Role="LAB" EntitySet="LABs" />
+      <End Role="ORDER_MEDIS" EntitySet="ORDER_MEDIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_MEDIS_OBAT" Association="mayasariModel.FK_ORDER_MEDIS_OBAT">
+      <End Role="OBAT" EntitySet="OBATs" />
+      <End Role="ORDER_MEDIS" EntitySet="ORDER_MEDIS" />
+    </AssociationSet>
+    <EntitySet Name="VW_ORDER_MEDIS" EntityType="mayasariModel.VW_ORDER_MEDIS" />
+    <EntitySet Name="VW_MONITOR_LAB" EntityType="mayasariModel.VW_MONITOR_LAB" />
+  </EntityContainer>
+  <EntityType Name="VW_ALOKASI_DOKTER">
+    <Key>
+      <PropertyRef Name="ID_DOKTER" />
+    </Key>
+    <Property Name="ID_DOKTER" Type="Int32" Nullable="false" />
+    <Property Name="NAMA_DOKTER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JENIS_SPESIALISASI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JUMLAH_PASIEN" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_HISTORY_MEDIS_PASIEN">
+    <Key>
+      <PropertyRef Name="REG_NO" />
+      <PropertyRef Name="ID_PASIEN" />
+      <PropertyRef Name="PASIEN" />
+      <PropertyRef Name="KELUHAN" />
+      <PropertyRef Name="STATUS_TUNGGU" />
+      <PropertyRef Name="ID_KLINIK" />
+    </Key>
+    <Property Name="REG_NO" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ID_PASIEN" Type="Int32" Nullable="false" />
+    <Property Name="PASIEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TGL_MASUK" Type="DateTime" Precision="3" />
+    <Property Name="KELUHAN" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DIAGNOSA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="NAMA_KLINIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOKTER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RUANGAN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS_TUNGGU" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="Int32" />
+    <Property Name="JENIS_SPESIALISASI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_DOKTER" Type="Int32" />
+    <Property Name="ID_KLINIK" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LAB">
+    <Key>
+      <PropertyRef Name="ID_LABORAT" />
+    </Key>
+    <Property Name="ID_LABORAT" Type="Int32" Nullable="false" />
+    <Property Name="ID_KLINIK" Type="Int32" Nullable="false" />
+    <Property Name="NAMA_TES" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GUNA_TES" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDER_MEDIS" Relationship="mayasariModel.FK_ORDER_MEDIS_LAB" FromRole="LAB" ToRole="ORDER_MEDIS" />
+  </EntityType>
+  <EntityType Name="OBAT">
+    <Key>
+      <PropertyRef Name="ID_OBAT" />
+    </Key>
+    <Property Name="ID_OBAT" Type="Int32" Nullable="false" />
+    <Property Name="ID_KLINIK" Type="Int32" Nullable="false" />
+    <Property Name="NAMA_OBAT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GUNA_OBAT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDER_MEDIS" Relationship="mayasariModel.FK_ORDER_MEDIS_OBAT" FromRole="OBAT" ToRole="ORDER_MEDIS" />
+  </EntityType>
+  <Association Name="FK_ORDER_MEDIS_LAB">
+    <End Type="mayasariModel.LAB" Role="LAB" Multiplicity="0..1" />
+    <End Type="mayasariModel.ORDER_MEDIS" Role="ORDER_MEDIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LAB">
+        <PropertyRef Name="ID_LABORAT" />
+      </Principal>
+      <Dependent Role="ORDER_MEDIS">
+        <PropertyRef Name="ID_LABORAT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_MEDIS_OBAT">
+    <End Type="mayasariModel.OBAT" Role="OBAT" Multiplicity="0..1" />
+    <End Type="mayasariModel.ORDER_MEDIS" Role="ORDER_MEDIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OBAT">
+        <PropertyRef Name="ID_OBAT" />
+      </Principal>
+      <Dependent Role="ORDER_MEDIS">
+        <PropertyRef Name="ID_OBAT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VW_ORDER_MEDIS">
+    <Key>
+      <PropertyRef Name="ID_ORDER" />
+      <PropertyRef Name="JENIS" />
+      <PropertyRef Name="NAMA" />
+    </Key>
+    <Property Name="ID_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="Int32" />
+    <Property Name="ID_PASIEN" Type="Int32" />
+    <Property Name="JENIS_ORDER_MEDIS" Type="Int32" />
+    <Property Name="JENIS" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" />
+    <Property Name="NAMA" Type="String" Nullable="false" MaxLength="205" FixedLength="false" Unicode="false" />
+    <Property Name="JUMLAH" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_MONITOR_LAB">
+    <Key>
+      <PropertyRef Name="ID_ORDER" />
+      <PropertyRef Name="NAMA" />
+      <PropertyRef Name="PASIEN" />
+      <PropertyRef Name="ID_DOKTER" />
+      <PropertyRef Name="ID_KLINIK" />
+      <PropertyRef Name="TGL_PEMERIKSAAN" />
+    </Key>
+    <Property Name="ID_ORDER" Type="Int32" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="Int32" />
+    <Property Name="ID" Type="Int32" />
+    <Property Name="NAMA" Type="String" Nullable="false" MaxLength="205" FixedLength="false" Unicode="false" />
+    <Property Name="ID_PASIEN" Type="Int32" />
+    <Property Name="PASIEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_DOKTER" Type="Int32" Nullable="false" />
+    <Property Name="DOKTER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_KLINIK" Type="Int32" Nullable="false" />
+    <Property Name="NAMA_KLINIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS_KASUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TGL_PEMERIKSAAN" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

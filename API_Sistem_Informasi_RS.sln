@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Sistem_Informasi_RS", "API_Sistem_Informasi_RS\API_Sistem_Informasi_RS.csproj", "{A7C23F62-861B-4594-9296-0946979DBE96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7C23F62-861B-4594-9296-0946979DBE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C23F62-861B-4594-9296-0946979DBE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C23F62-861B-4594-9296-0946979DBE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C23F62-861B-4594-9296-0946979DBE96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7C21727-73BC-4394-8159-13883436CEA5}
+	EndGlobalSection
+EndGlobal

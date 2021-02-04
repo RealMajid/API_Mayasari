@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="klinikModelStoreContainer" CdmEntityContainer="klinikEntities1">
+    <EntitySetMapping Name="DOKTERs">
+      <EntityTypeMapping TypeName="klinikModel.DOKTER">
+        <MappingFragment StoreEntitySet="DOKTER">
+          <ScalarProperty Name="ID_DOKTER" ColumnName="ID_DOKTER" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="ID_SPESIALISASI" ColumnName="ID_SPESIALISASI" />
+          <ScalarProperty Name="NAMA" ColumnName="NAMA" />
+          <ScalarProperty Name="PENDIDIKAN" ColumnName="PENDIDIKAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KASUS">
+      <EntityTypeMapping TypeName="klinikModel.KASU">
+        <MappingFragment StoreEntitySet="KASUS">
+          <ScalarProperty Name="ID_KASUS" ColumnName="ID_KASUS" />
+          <ScalarProperty Name="ID_PEMERIKSAAN" ColumnName="ID_PEMERIKSAAN" />
+          <ScalarProperty Name="STATUS_KASUS" ColumnName="STATUS_KASUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDER_MEDIS">
+      <EntityTypeMapping TypeName="klinikModel.ORDER_MEDIS">
+        <MappingFragment StoreEntitySet="ORDER_MEDIS">
+          <ScalarProperty Name="ID_ORDER" ColumnName="ID_ORDER" />
+          <ScalarProperty Name="ID_PEMERIKSAAN" ColumnName="ID_PEMERIKSAAN" />
+          <ScalarProperty Name="ID_PASIEN" ColumnName="ID_PASIEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PASIENs">
+      <EntityTypeMapping TypeName="klinikModel.PASIEN">
+        <MappingFragment StoreEntitySet="PASIEN">
+          <ScalarProperty Name="TEMPAT_LAHIR" ColumnName="TEMPAT_LAHIR" />
+          <ScalarProperty Name="ID_PASIEN" ColumnName="ID_PASIEN" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="NAMA" ColumnName="NAMA" />
+          <ScalarProperty Name="TGL_LAHIR" ColumnName="TGL_LAHIR" />
+          <ScalarProperty Name="ALAMAT" ColumnName="ALAMAT" />
+          <ScalarProperty Name="JENIS_KELAMIN" ColumnName="JENIS_KELAMIN" />
+          <ScalarProperty Name="TELP" ColumnName="TELP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PEMERIKSAANs">
+      <EntityTypeMapping TypeName="klinikModel.PEMERIKSAAN">
+        <MappingFragment StoreEntitySet="PEMERIKSAAN">
+          <ScalarProperty Name="ID_PEMERIKSAAN" ColumnName="ID_PEMERIKSAAN" />
+          <ScalarProperty Name="ID_DOKTER" ColumnName="ID_DOKTER" />
+          <ScalarProperty Name="ID_REKAM_MEDIS" ColumnName="ID_REKAM_MEDIS" />
+          <ScalarProperty Name="TGL" ColumnName="TGL" />
+          <ScalarProperty Name="RUANGAN" ColumnName="RUANGAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGISTER_KASUS">
+      <EntityTypeMapping TypeName="klinikModel.REGISTER_KASUS">
+        <MappingFragment StoreEntitySet="REGISTER_KASUS">
+          <ScalarProperty Name="ID_KLINIK" ColumnName="ID_KLINIK" />
+          <ScalarProperty Name="TENSI_DARAH" ColumnName="TENSI_DARAH" />
+          <ScalarProperty Name="BERAT_BADAN" ColumnName="BERAT_BADAN" />
+          <ScalarProperty Name="TINGGI_BADAN" ColumnName="TINGGI_BADAN" />
+          <ScalarProperty Name="REG_NO" ColumnName="REG_NO" />
+          <ScalarProperty Name="NAMA" ColumnName="NAMA" />
+          <ScalarProperty Name="KELUHAN" ColumnName="KELUHAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REKAM_MEDIS">
+      <EntityTypeMapping TypeName="klinikModel.REKAM_MEDIS">
+        <MappingFragment StoreEntitySet="REKAM_MEDIS">
+          <ScalarProperty Name="ID_REKAM_MEDIS" ColumnName="ID_REKAM_MEDIS" />
+          <ScalarProperty Name="GEJALA" ColumnName="GEJALA" />
+          <ScalarProperty Name="TINDAKAN" ColumnName="TINDAKAN" />
+          <ScalarProperty Name="VONIS" ColumnName="VONIS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLES">
+      <EntityTypeMapping TypeName="klinikModel.ROLE">
+        <MappingFragment StoreEntitySet="ROLES">
+          <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
+          <ScalarProperty Name="NAMA_ROLE" ColumnName="NAMA_ROLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPESIALISASIs">
+      <EntityTypeMapping TypeName="klinikModel.SPESIALISASI">
+        <MappingFragment StoreEntitySet="SPESIALISASI">
+          <ScalarProperty Name="ID_SPESIALISASI" ColumnName="ID_SPESIALISASI" />
+          <ScalarProperty Name="JENIS_SPESIALISASI" ColumnName="JENIS_SPESIALISASI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="klinikModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="klinikModel.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="LAST_LOGIN" ColumnName="LAST_LOGIN" />
+          <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_KASUS">
+      <EntityTypeMapping TypeName="klinikModel.T_KASUS">
+        <MappingFragment StoreEntitySet="T_KASUS">
+          <ScalarProperty Name="REG_NO" ColumnName="REG_NO" />
+          <ScalarProperty Name="ID_KASUS" ColumnName="ID_KASUS" />
+          <ScalarProperty Name="ID_PASIEN" ColumnName="ID_PASIEN" />
+          <ScalarProperty Name="VRF_DATA_PASIEN" ColumnName="VRF_DATA_PASIEN" />
+          <ScalarProperty Name="VRF_KELUHAN_PASIEN" ColumnName="VRF_KELUHAN_PASIEN" />
+          <ScalarProperty Name="VRF_HISTORICAL_DATA" ColumnName="VRF_HISTORICAL_DATA" />
+          <ScalarProperty Name="TGL_MASUK" ColumnName="TGL_MASUK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ROLE_USERS" TypeName="klinikModel.ROLE_USERS" StoreEntitySet="ROLE_USERS">
+      <EndProperty Name="ROLES">
+        <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
+      </EndProperty>
+      <EndProperty Name="USERS">
+        <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="KLINIKs">
+      <EntityTypeMapping TypeName="klinikModel.KLINIK">
+        <MappingFragment StoreEntitySet="KLINIK">
+          <ScalarProperty Name="ID_SPESIALISASI" ColumnName="ID_SPESIALISASI" />
+          <ScalarProperty Name="NAMA_KLINIK" ColumnName="NAMA_KLINIK" />
+          <ScalarProperty Name="ID_KLINIK" ColumnName="ID_KLINIK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_REGISTER_KASUS">
+      <EntityTypeMapping TypeName="klinikModel.VW_REGISTER_KASUS">
+        <MappingFragment StoreEntitySet="VW_REGISTER_KASUS">
+          <ScalarProperty Name="STATUS_KASUS" ColumnName="STATUS_KASUS" />
+          <ScalarProperty Name="DOKTER" ColumnName="DOKTER" />
+          <ScalarProperty Name="NAMA_KLINIK" ColumnName="NAMA_KLINIK" />
+          <ScalarProperty Name="KELUHAN" ColumnName="KELUHAN" />
+          <ScalarProperty Name="TGL_MASUK" ColumnName="TGL_MASUK" />
+          <ScalarProperty Name="PASIEN" ColumnName="PASIEN" />
+          <ScalarProperty Name="REG_NO" ColumnName="REG_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KASUS_STAT">
+      <EntityTypeMapping TypeName="klinikModel.KASUS_STAT">
+        <MappingFragment StoreEntitySet="KASUS_STAT">
+          <ScalarProperty Name="TGL" ColumnName="TGL" />
+          <ScalarProperty Name="STATUS_KASUS" ColumnName="STATUS_KASUS" />
+          <ScalarProperty Name="ID_KASUS" ColumnName="ID_KASUS" />
+          <ScalarProperty Name="ID_KASUS_STAT" ColumnName="ID_KASUS_STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

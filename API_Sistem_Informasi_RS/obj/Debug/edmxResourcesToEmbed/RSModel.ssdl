@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="klinikModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'klinik.dbo.DOKTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DOKTER">
+    <Key>
+      <PropertyRef Name="ID_DOKTER" />
+      <PropertyRef Name="ID_USER" />
+      <PropertyRef Name="ID_SPESIALISASI" />
+      <PropertyRef Name="PENDIDIKAN" />
+    </Key>
+    <Property Name="ID_DOKTER" Type="int" Nullable="false" />
+    <Property Name="ID_USER" Type="int" Nullable="false" />
+    <Property Name="ID_SPESIALISASI" Type="int" Nullable="false" />
+    <Property Name="NAMA" Type="varchar" MaxLength="50" />
+    <Property Name="PENDIDIKAN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ID_TIM_DOKTER" Type="int" />
+  </EntityType>
+  <EntityType Name="KASUS">
+    <Key>
+      <PropertyRef Name="ID_KASUS" />
+    </Key>
+    <Property Name="ID_KASUS" Type="int" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="int" Nullable="false" />
+    <Property Name="STATUS_KASUS" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ORDER_MEDIS">
+    <Key>
+      <PropertyRef Name="ID_ORDER" />
+    </Key>
+    <Property Name="ID_ORDER" Type="int" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="int" />
+    <Property Name="ID_PASIEN" Type="int" />
+  </EntityType>
+  <EntityType Name="PASIEN">
+    <Key>
+      <PropertyRef Name="ID_PASIEN" />
+    </Key>
+    <Property Name="ID_PASIEN" Type="int" Nullable="false" />
+    <Property Name="ID_USER" Type="int" />
+    <Property Name="NAMA" Type="varchar" MaxLength="50" />
+    <Property Name="TGL_LAHIR" Type="date" />
+    <Property Name="ALAMAT" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="PEMERIKSAAN">
+    <Key>
+      <PropertyRef Name="ID_PEMERIKSAAN" />
+    </Key>
+    <Property Name="ID_PEMERIKSAAN" Type="int" Nullable="false" />
+    <Property Name="ID_TIM_DOKTER" Type="int" Nullable="false" />
+    <Property Name="ID_REKAM_MEDIS" Type="int" Nullable="false" />
+    <Property Name="TGL" Type="datetime" />
+    <Property Name="LOKASI" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'klinik.dbo.PERAWAT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PERAWAT">
+    <Key>
+      <PropertyRef Name="ID_PERAWAT" />
+      <PropertyRef Name="ID_USER" />
+      <PropertyRef Name="ID_TIM_DOKTER" />
+      <PropertyRef Name="NAMA" />
+    </Key>
+    <Property Name="ID_PERAWAT" Type="int" Nullable="false" />
+    <Property Name="ID_USER" Type="int" Nullable="false" />
+    <Property Name="ID_TIM_DOKTER" Type="int" Nullable="false" />
+    <Property Name="NAMA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PENDIDIKAN" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="REGISTER_KASUS">
+    <Key>
+      <PropertyRef Name="REG_NO" />
+    </Key>
+    <Property Name="REG_NO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NAMA" Type="nvarchar" MaxLength="50" />
+    <Property Name="KELUHAN" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="REKAM_MEDIS">
+    <Key>
+      <PropertyRef Name="ID_REKAM_MEDIS" />
+    </Key>
+    <Property Name="ID_REKAM_MEDIS" Type="int" Nullable="false" />
+    <Property Name="GEJALA" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="VONIS" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="TINDAKAN" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'klinik.dbo.ROLE_USERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ROLE_USERS">
+    <Key>
+      <PropertyRef Name="ID_USER" />
+      <PropertyRef Name="ID_ROLE" />
+    </Key>
+    <Property Name="ID_USER" Type="int" Nullable="false" />
+    <Property Name="ID_ROLE" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="ID_ROLE" />
+    </Key>
+    <Property Name="ID_ROLE" Type="int" Nullable="false" />
+    <Property Name="NAMA_ROLE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HAK_ROLE" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SPESIALISASI">
+    <Key>
+      <PropertyRef Name="ID_SPESIALISASI" />
+    </Key>
+    <Property Name="ID_SPESIALISASI" Type="int" Nullable="false" />
+    <Property Name="JENIS_SPESIALISASI" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'klinik.dbo.T_KASUS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="T_KASUS">
+    <Key>
+      <PropertyRef Name="REG_NO" />
+      <PropertyRef Name="ID_KASUS" />
+      <PropertyRef Name="ID_PASIEN" />
+    </Key>
+    <Property Name="REG_NO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_KASUS" Type="int" Nullable="false" />
+    <Property Name="ID_PASIEN" Type="int" Nullable="false" />
+    <Property Name="VRF_DATA_PASIEN" Type="nvarchar" MaxLength="50" />
+    <Property Name="VRF_KELUHAN_PASIEN" Type="nvarchar" MaxLength="50" />
+    <Property Name="VRF_HISTORICAL_DATA" Type="nvarchar" MaxLength="50" />
+    <Property Name="TGL_MASUK" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TIM_DOKTER">
+    <Key>
+      <PropertyRef Name="ID_TIM_DOKTER" />
+    </Key>
+    <Property Name="ID_TIM_DOKTER" Type="int" Nullable="false" />
+    <Property Name="NAMA_TIM" Type="varchar" MaxLength="50" />
+    <Property Name="NAMA_DOKTER" Type="varchar" MaxLength="70" />
+    <Property Name="NAMA_PERAWAT" Type="varchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID_USER" />
+    </Key>
+    <Property Name="ID_USER" Type="int" Nullable="false" />
+    <Property Name="USERNAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LAST_LOGIN" Type="datetime" />
+    <Property Name="ACTIVE_YN" Type="nchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DOKTER_SPESIALISASI">
+    <End Role="SPESIALISASI" Type="Self.SPESIALISASI" Multiplicity="1" />
+    <End Role="DOKTER" Type="Self.DOKTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPESIALISASI">
+        <PropertyRef Name="ID_SPESIALISASI" />
+      </Principal>
+      <Dependent Role="DOKTER">
+        <PropertyRef Name="ID_SPESIALISASI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOKTER_TIM_DOKTER">
+    <End Role="TIM_DOKTER" Type="Self.TIM_DOKTER" Multiplicity="0..1" />
+    <End Role="DOKTER" Type="Self.DOKTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIM_DOKTER">
+        <PropertyRef Name="ID_TIM_DOKTER" />
+      </Principal>
+      <Dependent Role="DOKTER">
+        <PropertyRef Name="ID_TIM_DOKTER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOKTER_USERS">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="DOKTER" Type="Self.DOKTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="DOKTER">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KASUS_PEMERIKSAAN">
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="KASUS" Type="Self.KASUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Principal>
+      <Dependent Role="KASUS">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_MEDIS_PEMERIKSAAN">
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="0..1" />
+    <End Role="ORDER_MEDIS" Type="Self.ORDER_MEDIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Principal>
+      <Dependent Role="ORDER_MEDIS">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PASIEN_USERS">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="PASIEN" Type="Self.PASIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="PASIEN">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEMERIKSAAN_REKAM_MEDIS">
+    <End Role="REKAM_MEDIS" Type="Self.REKAM_MEDIS" Multiplicity="1" />
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REKAM_MEDIS">
+        <PropertyRef Name="ID_REKAM_MEDIS" />
+      </Principal>
+      <Dependent Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_REKAM_MEDIS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEMERIKSAAN_TIM_DOKTER">
+    <End Role="TIM_DOKTER" Type="Self.TIM_DOKTER" Multiplicity="1" />
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIM_DOKTER">
+        <PropertyRef Name="ID_TIM_DOKTER" />
+      </Principal>
+      <Dependent Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_TIM_DOKTER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERAWAT_TIM_DOKTER">
+    <End Role="TIM_DOKTER" Type="Self.TIM_DOKTER" Multiplicity="1" />
+    <End Role="PERAWAT" Type="Self.PERAWAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIM_DOKTER">
+        <PropertyRef Name="ID_TIM_DOKTER" />
+      </Principal>
+      <Dependent Role="PERAWAT">
+        <PropertyRef Name="ID_TIM_DOKTER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERAWAT_USERS">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="PERAWAT" Type="Self.PERAWAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="PERAWAT">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROLE_USERS_ROLES">
+    <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+    <End Role="ROLE_USERS" Type="Self.ROLE_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="ID_ROLE" />
+      </Principal>
+      <Dependent Role="ROLE_USERS">
+        <PropertyRef Name="ID_ROLE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROLE_USERS_USERS">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="ROLE_USERS" Type="Self.ROLE_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID_USER" />
+      </Principal>
+      <Dependent Role="ROLE_USERS">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_KASUS_KASUS">
+    <End Role="KASUS" Type="Self.KASUS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="T_KASUS" Type="Self.T_KASUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KASUS">
+        <PropertyRef Name="ID_KASUS" />
+      </Principal>
+      <Dependent Role="T_KASUS">
+        <PropertyRef Name="ID_KASUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_KASUS_PASIEN">
+    <End Role="PASIEN" Type="Self.PASIEN" Multiplicity="1" />
+    <End Role="T_KASUS" Type="Self.T_KASUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PASIEN">
+        <PropertyRef Name="ID_PASIEN" />
+      </Principal>
+      <Dependent Role="T_KASUS">
+        <PropertyRef Name="ID_PASIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_KASUS_REGISTER_KASUS">
+    <End Role="REGISTER_KASUS" Type="Self.REGISTER_KASUS" Multiplicity="1" />
+    <End Role="T_KASUS" Type="Self.T_KASUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGISTER_KASUS">
+        <PropertyRef Name="REG_NO" />
+      </Principal>
+      <Dependent Role="T_KASUS">
+        <PropertyRef Name="REG_NO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="klinikModelStoreContainer">
+    <EntitySet Name="KASUS" EntityType="Self.KASUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_MEDIS" EntityType="Self.ORDER_MEDIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PASIEN" EntityType="Self.PASIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PEMERIKSAAN" EntityType="Self.PEMERIKSAAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REGISTER_KASUS" EntityType="Self.REGISTER_KASUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REKAM_MEDIS" EntityType="Self.REKAM_MEDIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SPESIALISASI" EntityType="Self.SPESIALISASI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIM_DOKTER" EntityType="Self.TIM_DOKTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOKTER" EntityType="Self.DOKTER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DOKTER].[ID_DOKTER] AS [ID_DOKTER], 
+    [DOKTER].[ID_USER] AS [ID_USER], 
+    [DOKTER].[ID_SPESIALISASI] AS [ID_SPESIALISASI], 
+    [DOKTER].[NAMA] AS [NAMA], 
+    [DOKTER].[PENDIDIKAN] AS [PENDIDIKAN], 
+    [DOKTER].[ID_TIM_DOKTER] AS [ID_TIM_DOKTER]
+    FROM [dbo].[DOKTER] AS [DOKTER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PERAWAT" EntityType="Self.PERAWAT" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PERAWAT].[ID_PERAWAT] AS [ID_PERAWAT], 
+    [PERAWAT].[ID_USER] AS [ID_USER], 
+    [PERAWAT].[ID_TIM_DOKTER] AS [ID_TIM_DOKTER], 
+    [PERAWAT].[NAMA] AS [NAMA], 
+    [PERAWAT].[PENDIDIKAN] AS [PENDIDIKAN]
+    FROM [dbo].[PERAWAT] AS [PERAWAT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ROLE_USERS" EntityType="Self.ROLE_USERS" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ROLE_USERS].[ID_USER] AS [ID_USER], 
+    [ROLE_USERS].[ID_ROLE] AS [ID_ROLE]
+    FROM [dbo].[ROLE_USERS] AS [ROLE_USERS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_KASUS" EntityType="Self.T_KASUS" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [T_KASUS].[REG_NO] AS [REG_NO], 
+    [T_KASUS].[ID_KASUS] AS [ID_KASUS], 
+    [T_KASUS].[ID_PASIEN] AS [ID_PASIEN], 
+    [T_KASUS].[VRF_DATA_PASIEN] AS [VRF_DATA_PASIEN], 
+    [T_KASUS].[VRF_KELUHAN_PASIEN] AS [VRF_KELUHAN_PASIEN], 
+    [T_KASUS].[VRF_HISTORICAL_DATA] AS [VRF_HISTORICAL_DATA], 
+    [T_KASUS].[TGL_MASUK] AS [TGL_MASUK]
+    FROM [dbo].[T_KASUS] AS [T_KASUS]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_DOKTER_SPESIALISASI" Association="Self.FK_DOKTER_SPESIALISASI">
+      <End Role="SPESIALISASI" EntitySet="SPESIALISASI" />
+      <End Role="DOKTER" EntitySet="DOKTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOKTER_TIM_DOKTER" Association="Self.FK_DOKTER_TIM_DOKTER">
+      <End Role="TIM_DOKTER" EntitySet="TIM_DOKTER" />
+      <End Role="DOKTER" EntitySet="DOKTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOKTER_USERS" Association="Self.FK_DOKTER_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="DOKTER" EntitySet="DOKTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KASUS_PEMERIKSAAN" Association="Self.FK_KASUS_PEMERIKSAAN">
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAAN" />
+      <End Role="KASUS" EntitySet="KASUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_MEDIS_PEMERIKSAAN" Association="Self.FK_ORDER_MEDIS_PEMERIKSAAN">
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAAN" />
+      <End Role="ORDER_MEDIS" EntitySet="ORDER_MEDIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PASIEN_USERS" Association="Self.FK_PASIEN_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PASIEN" EntitySet="PASIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEMERIKSAAN_REKAM_MEDIS" Association="Self.FK_PEMERIKSAAN_REKAM_MEDIS">
+      <End Role="REKAM_MEDIS" EntitySet="REKAM_MEDIS" />
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEMERIKSAAN_TIM_DOKTER" Association="Self.FK_PEMERIKSAAN_TIM_DOKTER">
+      <End Role="TIM_DOKTER" EntitySet="TIM_DOKTER" />
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERAWAT_TIM_DOKTER" Association="Self.FK_PERAWAT_TIM_DOKTER">
+      <End Role="TIM_DOKTER" EntitySet="TIM_DOKTER" />
+      <End Role="PERAWAT" EntitySet="PERAWAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERAWAT_USERS" Association="Self.FK_PERAWAT_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PERAWAT" EntitySet="PERAWAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROLE_USERS_ROLES" Association="Self.FK_ROLE_USERS_ROLES">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="ROLE_USERS" EntitySet="ROLE_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROLE_USERS_USERS" Association="Self.FK_ROLE_USERS_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ROLE_USERS" EntitySet="ROLE_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_KASUS_KASUS" Association="Self.FK_T_KASUS_KASUS">
+      <End Role="KASUS" EntitySet="KASUS" />
+      <End Role="T_KASUS" EntitySet="T_KASUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_KASUS_PASIEN" Association="Self.FK_T_KASUS_PASIEN">
+      <End Role="PASIEN" EntitySet="PASIEN" />
+      <End Role="T_KASUS" EntitySet="T_KASUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_KASUS_REGISTER_KASUS" Association="Self.FK_T_KASUS_REGISTER_KASUS">
+      <End Role="REGISTER_KASUS" EntitySet="REGISTER_KASUS" />
+      <End Role="T_KASUS" EntitySet="T_KASUS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
