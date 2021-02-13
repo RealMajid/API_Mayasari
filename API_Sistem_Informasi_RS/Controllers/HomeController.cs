@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace API_Sistem_Informasi_RS.Controllers
 {
+    [Authorize(Roles = "Super Admin,Eksekutif")]
     public class HomeController : Controller
     {
         public ActionResult Index()

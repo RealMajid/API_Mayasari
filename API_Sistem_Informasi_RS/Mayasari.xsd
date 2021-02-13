@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Mayasari" targetNamespace="http://tempuri.org/Mayasari.xsd" xmlns:mstns="http://tempuri.org/Mayasari.xsd" xmlns="http://tempuri.org/Mayasari.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Mayasari" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Mayasari" msprop:Generator_UserDSName="Mayasari">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RPT_REGISTER_KASUS" msprop:Generator_TableClassName="RPT_REGISTER_KASUSDataTable" msprop:Generator_TableVarName="tableRPT_REGISTER_KASUS" msprop:Generator_RowChangedName="RPT_REGISTER_KASUSRowChanged" msprop:Generator_TablePropName="RPT_REGISTER_KASUS" msprop:Generator_RowDeletingName="RPT_REGISTER_KASUSRowDeleting" msprop:Generator_RowChangingName="RPT_REGISTER_KASUSRowChanging" msprop:Generator_RowEvHandlerName="RPT_REGISTER_KASUSRowChangeEventHandler" msprop:Generator_RowDeletedName="RPT_REGISTER_KASUSRowDeleted" msprop:Generator_RowClassName="RPT_REGISTER_KASUSRow" msprop:Generator_UserTableName="RPT_REGISTER_KASUS" msprop:Generator_RowEvArgName="RPT_REGISTER_KASUSRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="REG_NO" msprop:Generator_ColumnVarNameInTable="columnREG_NO" msprop:Generator_ColumnPropNameInRow="REG_NO" msprop:Generator_ColumnPropNameInTable="REG_NOColumn" msprop:Generator_UserColumnName="REG_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="PASIEN" msprop:Generator_ColumnVarNameInTable="columnPASIEN" msprop:Generator_ColumnPropNameInRow="PASIEN" msprop:Generator_ColumnPropNameInTable="PASIENColumn" msprop:Generator_UserColumnName="PASIEN" type="xs:string" minOccurs="0" />
+              <xs:element name="TGL_MASUK" msprop:Generator_ColumnVarNameInTable="columnTGL_MASUK" msprop:Generator_ColumnPropNameInRow="TGL_MASUK" msprop:Generator_ColumnPropNameInTable="TGL_MASUKColumn" msprop:Generator_UserColumnName="TGL_MASUK" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="KELUHAN" msprop:Generator_ColumnVarNameInTable="columnKELUHAN" msprop:Generator_ColumnPropNameInRow="KELUHAN" msprop:Generator_ColumnPropNameInTable="KELUHANColumn" msprop:Generator_UserColumnName="KELUHAN" type="xs:string" minOccurs="0" />
+              <xs:element name="NAMA_KLINIK" msprop:Generator_ColumnVarNameInTable="columnNAMA_KLINIK" msprop:Generator_ColumnPropNameInRow="NAMA_KLINIK" msprop:Generator_ColumnPropNameInTable="NAMA_KLINIKColumn" msprop:Generator_UserColumnName="NAMA_KLINIK" type="xs:string" minOccurs="0" />
+              <xs:element name="DOKTER" msprop:Generator_ColumnVarNameInTable="columnDOKTER" msprop:Generator_ColumnPropNameInRow="DOKTER" msprop:Generator_ColumnPropNameInTable="DOKTERColumn" msprop:Generator_UserColumnName="DOKTER" type="xs:string" minOccurs="0" />
+              <xs:element name="STATUS_KASUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS_KASUS" msprop:Generator_ColumnPropNameInRow="STATUS_KASUS" msprop:Generator_ColumnPropNameInTable="STATUS_KASUSColumn" msprop:Generator_UserColumnName="STATUS_KASUS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RPT_ALOKASI_DOKTER" msprop:Generator_TableClassName="RPT_ALOKASI_DOKTERDataTable" msprop:Generator_TableVarName="tableRPT_ALOKASI_DOKTER" msprop:Generator_TablePropName="RPT_ALOKASI_DOKTER" msprop:Generator_RowDeletingName="RPT_ALOKASI_DOKTERRowDeleting" msprop:Generator_RowChangingName="RPT_ALOKASI_DOKTERRowChanging" msprop:Generator_RowEvHandlerName="RPT_ALOKASI_DOKTERRowChangeEventHandler" msprop:Generator_RowDeletedName="RPT_ALOKASI_DOKTERRowDeleted" msprop:Generator_UserTableName="RPT_ALOKASI_DOKTER" msprop:Generator_RowChangedName="RPT_ALOKASI_DOKTERRowChanged" msprop:Generator_RowEvArgName="RPT_ALOKASI_DOKTERRowChangeEvent" msprop:Generator_RowClassName="RPT_ALOKASI_DOKTERRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Dokter" msprop:Generator_ColumnVarNameInTable="columnDokter" msprop:Generator_ColumnPropNameInRow="Dokter" msprop:Generator_ColumnPropNameInTable="DokterColumn" msprop:Generator_UserColumnName="Dokter" type="xs:string" minOccurs="0" />
+              <xs:element name="Spesialisasi" msprop:Generator_ColumnVarNameInTable="columnSpesialisasi" msprop:Generator_ColumnPropNameInRow="Spesialisasi" msprop:Generator_ColumnPropNameInTable="SpesialisasiColumn" msprop:Generator_UserColumnName="Spesialisasi" type="xs:string" minOccurs="0" />
+              <xs:element name="JumlahPemeriksaan" msprop:Generator_ColumnVarNameInTable="columnJumlahPemeriksaan" msprop:Generator_ColumnPropNameInRow="JumlahPemeriksaan" msprop:Generator_ColumnPropNameInTable="JumlahPemeriksaanColumn" msprop:Generator_UserColumnName="JumlahPemeriksaan" type="xs:int" minOccurs="0" />
+              <xs:element name="Queuing" msprop:Generator_ColumnVarNameInTable="columnQueuing" msprop:Generator_ColumnPropNameInRow="Queuing" msprop:Generator_ColumnPropNameInTable="QueuingColumn" msprop:Generator_UserColumnName="Queuing" type="xs:int" minOccurs="0" />
+              <xs:element name="Checkup" msprop:Generator_ColumnVarNameInTable="columnCheckup" msprop:Generator_ColumnPropNameInRow="Checkup" msprop:Generator_ColumnPropNameInTable="CheckupColumn" msprop:Generator_UserColumnName="Checkup" type="xs:int" minOccurs="0" />
+              <xs:element name="Closed" msprop:Generator_ColumnVarNameInTable="columnClosed" msprop:Generator_ColumnPropNameInRow="Closed" msprop:Generator_ColumnPropNameInTable="ClosedColumn" msprop:Generator_UserColumnName="Closed" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RPT_DETAIL_PEMERIKSAAN_PASIEN" msprop:Generator_TableClassName="RPT_DETAIL_PEMERIKSAAN_PASIENDataTable" msprop:Generator_TableVarName="tableRPT_DETAIL_PEMERIKSAAN_PASIEN" msprop:Generator_TablePropName="RPT_DETAIL_PEMERIKSAAN_PASIEN" msprop:Generator_RowDeletingName="RPT_DETAIL_PEMERIKSAAN_PASIENRowDeleting" msprop:Generator_RowChangingName="RPT_DETAIL_PEMERIKSAAN_PASIENRowChanging" msprop:Generator_RowEvHandlerName="RPT_DETAIL_PEMERIKSAAN_PASIENRowChangeEventHandler" msprop:Generator_RowDeletedName="RPT_DETAIL_PEMERIKSAAN_PASIENRowDeleted" msprop:Generator_UserTableName="RPT_DETAIL_PEMERIKSAAN_PASIEN" msprop:Generator_RowChangedName="RPT_DETAIL_PEMERIKSAAN_PASIENRowChanged" msprop:Generator_RowEvArgName="RPT_DETAIL_PEMERIKSAAN_PASIENRowChangeEvent" msprop:Generator_RowClassName="RPT_DETAIL_PEMERIKSAAN_PASIENRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="REG_NO" msprop:Generator_ColumnVarNameInTable="columnREG_NO" msprop:Generator_ColumnPropNameInRow="REG_NO" msprop:Generator_ColumnPropNameInTable="REG_NOColumn" msprop:Generator_UserColumnName="REG_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="PASIEN" msprop:Generator_ColumnVarNameInTable="columnPASIEN" msprop:Generator_ColumnPropNameInRow="PASIEN" msprop:Generator_ColumnPropNameInTable="PASIENColumn" msprop:Generator_UserColumnName="PASIEN" type="xs:string" minOccurs="0" />
+              <xs:element name="TGL_MASUK" msprop:Generator_ColumnVarNameInTable="columnTGL_MASUK" msprop:Generator_ColumnPropNameInRow="TGL_MASUK" msprop:Generator_ColumnPropNameInTable="TGL_MASUKColumn" msprop:Generator_UserColumnName="TGL_MASUK" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="KELUHAN" msprop:Generator_ColumnVarNameInTable="columnKELUHAN" msprop:Generator_ColumnPropNameInRow="KELUHAN" msprop:Generator_ColumnPropNameInTable="KELUHANColumn" msprop:Generator_UserColumnName="KELUHAN" type="xs:string" minOccurs="0" />
+              <xs:element name="GEJALA" msdata:Caption="NAMA_KLINIK" msprop:Generator_ColumnVarNameInTable="columnGEJALA" msprop:Generator_ColumnPropNameInRow="GEJALA" msprop:Generator_ColumnPropNameInTable="GEJALAColumn" msprop:Generator_UserColumnName="GEJALA" type="xs:string" minOccurs="0" />
+              <xs:element name="DOKTER" msprop:Generator_ColumnVarNameInTable="columnDOKTER" msprop:Generator_ColumnPropNameInRow="DOKTER" msprop:Generator_ColumnPropNameInTable="DOKTERColumn" msprop:Generator_UserColumnName="DOKTER" type="xs:string" minOccurs="0" />
+              <xs:element name="RUANGAN" msdata:Caption="STATUS_KASUS" msprop:Generator_ColumnVarNameInTable="columnRUANGAN" msprop:Generator_ColumnPropNameInRow="RUANGAN" msprop:Generator_ColumnPropNameInTable="RUANGANColumn" msprop:Generator_UserColumnName="RUANGAN" type="xs:string" minOccurs="0" />
+              <xs:element name="NAMA_KLINIK" msprop:Generator_ColumnVarNameInTable="columnNAMA_KLINIK" msprop:Generator_ColumnPropNameInRow="NAMA_KLINIK" msprop:Generator_ColumnPropNameInTable="NAMA_KLINIKColumn" msprop:Generator_UserColumnName="NAMA_KLINIK" type="xs:string" minOccurs="0" />
+              <xs:element name="DIAGNOSA" msprop:Generator_ColumnVarNameInTable="columnDIAGNOSA" msprop:Generator_ColumnPropNameInRow="DIAGNOSA" msprop:Generator_ColumnPropNameInTable="DIAGNOSAColumn" msprop:Generator_UserColumnName="DIAGNOSA" type="xs:string" minOccurs="0" />
+              <xs:element name="TINDAKAN" msprop:Generator_ColumnVarNameInTable="columnTINDAKAN" msprop:Generator_ColumnPropNameInRow="TINDAKAN" msprop:Generator_ColumnPropNameInTable="TINDAKANColumn" msprop:Generator_UserColumnName="TINDAKAN" type="xs:string" minOccurs="0" />
+              <xs:element name="HASIL_TEST_LAB" msprop:Generator_ColumnVarNameInTable="columnHASIL_TEST_LAB" msprop:Generator_ColumnPropNameInRow="HASIL_TEST_LAB" msprop:Generator_ColumnPropNameInTable="HASIL_TEST_LABColumn" msprop:Generator_UserColumnName="HASIL_TEST_LAB" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RPT_KINERJA_DOKTER" msprop:Generator_TableClassName="RPT_KINERJA_DOKTERDataTable" msprop:Generator_TableVarName="tableRPT_KINERJA_DOKTER" msprop:Generator_TablePropName="RPT_KINERJA_DOKTER" msprop:Generator_RowDeletingName="RPT_KINERJA_DOKTERRowDeleting" msprop:Generator_RowChangingName="RPT_KINERJA_DOKTERRowChanging" msprop:Generator_RowEvHandlerName="RPT_KINERJA_DOKTERRowChangeEventHandler" msprop:Generator_RowDeletedName="RPT_KINERJA_DOKTERRowDeleted" msprop:Generator_UserTableName="RPT_KINERJA_DOKTER" msprop:Generator_RowChangedName="RPT_KINERJA_DOKTERRowChanged" msprop:Generator_RowEvArgName="RPT_KINERJA_DOKTERRowChangeEvent" msprop:Generator_RowClassName="RPT_KINERJA_DOKTERRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DOKTER" msprop:Generator_ColumnVarNameInTable="columnDOKTER" msprop:Generator_ColumnPropNameInRow="DOKTER" msprop:Generator_ColumnPropNameInTable="DOKTERColumn" msprop:Generator_UserColumnName="DOKTER" type="xs:string" minOccurs="0" />
+              <xs:element name="JENIS_SPESIALISASI" msprop:Generator_ColumnVarNameInTable="columnJENIS_SPESIALISASI" msprop:Generator_ColumnPropNameInRow="JENIS_SPESIALISASI" msprop:Generator_ColumnPropNameInTable="JENIS_SPESIALISASIColumn" msprop:Generator_UserColumnName="JENIS_SPESIALISASI" type="xs:string" minOccurs="0" />
+              <xs:element name="ID_PEMERIKSAAN" msprop:Generator_ColumnVarNameInTable="columnID_PEMERIKSAAN" msprop:Generator_ColumnPropNameInRow="ID_PEMERIKSAAN" msprop:Generator_ColumnPropNameInTable="ID_PEMERIKSAANColumn" msprop:Generator_UserColumnName="ID_PEMERIKSAAN" type="xs:string" minOccurs="0" />
+              <xs:element name="TGL_MASUK" msprop:Generator_ColumnVarNameInTable="columnTGL_MASUK" msprop:Generator_ColumnPropNameInRow="TGL_MASUK" msprop:Generator_ColumnPropNameInTable="TGL_MASUKColumn" msprop:Generator_UserColumnName="TGL_MASUK" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TGL_KELUAR" msprop:Generator_ColumnVarNameInTable="columnTGL_KELUAR" msprop:Generator_ColumnPropNameInRow="TGL_KELUAR" msprop:Generator_ColumnPropNameInTable="TGL_KELUARColumn" msprop:Generator_UserColumnName="TGL_KELUAR" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LAMA_PEMERIKSAAN" msprop:Generator_ColumnVarNameInTable="columnLAMA_PEMERIKSAAN" msprop:Generator_ColumnPropNameInRow="LAMA_PEMERIKSAAN" msprop:Generator_ColumnPropNameInTable="LAMA_PEMERIKSAANColumn" msprop:Generator_UserColumnName="LAMA_PEMERIKSAAN" type="xs:string" minOccurs="0" />
+              <xs:element name="KINERJA" msprop:Generator_ColumnVarNameInTable="columnKINERJA" msprop:Generator_ColumnPropNameInRow="KINERJA" msprop:Generator_ColumnPropNameInTable="KINERJAColumn" msprop:Generator_UserColumnName="KINERJA" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

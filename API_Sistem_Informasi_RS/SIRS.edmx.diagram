@@ -12,14 +12,14 @@
         <EntityTypeShape EntityType="mayasariModel.ORDER_MEDIS" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.PASIEN" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.PEMERIKSAAN" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayasariModel.REGISTER_KASUS" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayasariModel.REGISTER_KASUS" Width="1.75" PointX="5.25" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.REKAM_MEDIS" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.ROLE" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.SPESIALISASI" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.T_KASUS" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.USER" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayasariModel.VW_REGISTER_KASUS" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayasariModel.VW_REGISTER_KASUS" Width="1.5" PointX="12.5" PointY="16.625" IsExpanded="true" />
         <AssociationConnector Association="mayasariModel.FK_DOKTER_SPESIALISASI" ManuallyRouted="false" />
         <AssociationConnector Association="mayasariModel.FK_DOKTER_USERS" ManuallyRouted="false" />
         <AssociationConnector Association="mayasariModel.FK_PEMERIKSAAN_DOKTER" ManuallyRouted="false" />
@@ -33,14 +33,14 @@
         <AssociationConnector Association="mayasariModel.FK_PEMERIKSAAN_REKAM_MEDIS" ManuallyRouted="false" />
         <AssociationConnector Association="mayasariModel.FK_T_KASUS_REGISTER_KASUS" ManuallyRouted="false" />
         <AssociationConnector Association="mayasariModel.ROLE_USERS" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mayasariModel.VW_ALOKASI_DOKTER" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="mayasariModel.VW_HISTORY_MEDIS_PASIEN" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="mayasariModel.VW_ALOKASI_DOKTER" Width="1.875" PointX="12.25" PointY="2.875" />
+        <EntityTypeShape EntityType="mayasariModel.VW_HISTORY_MEDIS_PASIEN" Width="2.375" PointX="12.375" PointY="5.25" />
         <EntityTypeShape EntityType="mayasariModel.LAB" Width="1.5" PointX="7.5" PointY="18" />
         <EntityTypeShape EntityType="mayasariModel.OBAT" Width="1.5" PointX="7.375" PointY="11.875" />
         <AssociationConnector Association="mayasariModel.FK_ORDER_MEDIS_LAB" />
         <AssociationConnector Association="mayasariModel.FK_ORDER_MEDIS_OBAT" />
-        <EntityTypeShape EntityType="mayasariModel.VW_ORDER_MEDIS" Width="1.5" PointX="9.375" PointY="11.75" />
-        <EntityTypeShape EntityType="mayasariModel.VW_MONITOR_LAB" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="mayasariModel.VW_ORDER_MEDIS" Width="2.125" PointX="12.5" PointY="13.5" />
+        <EntityTypeShape EntityType="mayasariModel.VW_MONITOR_LAB" Width="2.25" PointX="12.375" PointY="9.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

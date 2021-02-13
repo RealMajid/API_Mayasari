@@ -1,4 +1,5 @@
 ﻿using API_Sistem_Informasi_RS.Models;
+using API_Sistem_Informasi_RS.Models.Request;
 using API_Sistem_Informasi_RS.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,91 @@ namespace API_Sistem_Informasi_RS.Controllers
             result.STATUS_TUNGGU = GetStatusTunggu(result.ID_PEMERIKSAAN.GetValueOrDefault());
 
             return Ok(result);
+        }
+
+        [ResponseType(typeof(RekamMedisRequest))]
+        [Route("api/pasien/recentrekammedis")]
+        [HttpGet]
+        [Authorize(Roles = "Super Admin,Pasien")]
+        public IHttpActionResult GetRekamMedisById()
+        {
+            var result = new RekamMedisRequest();
+            var historyMedis = new VW_HISTORY_MEDIS_PASIEN();
+            var rekamMedis = new REKAM_MEDIS();
+
+            var identity = (ClaimsIdentity)User.Identity;
+            var roles = identity.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault();
+            if (roles.Value == "Pasien")
+            {
+                var username = identity.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault().Value;
+                var pasien = db.PASIENs.Where(x => x.USER.USERNAME == username).FirstOrDefault();
+
+                historyMedis = db.VW_HISTORY_MEDIS_PASIEN.Where(x => x.ID_PASIEN == pasien.ID_PASIEN).OrderByDescending(x => x.TGL_MASUK).FirstOrDefault();
+                var tKasus = db.PEMERIKSAANs.Where(x => x.ID_PEMERIKSAAN == historyMedis.ID_PEMERIKSAAN).FirstOrDefault();
+                if (tKasus.ID_REKAM_MEDIS.HasValue) rekamMedis = db.REKAM_MEDIS.Where(x => x.ID_REKAM_MEDIS == tKasus.ID_REKAM_MEDIS).FirstOrDefault();
+            }
+            else
+            {
+                historyMedis = db.VW_HISTORY_MEDIS_PASIEN.OrderByDescending(x => x.TGL_MASUK).ThenBy(x => x.PASIEN).FirstOrDefault();
+                var tKasus = db.PEMERIKSAANs.Where(x => x.ID_PEMERIKSAAN == historyMedis.ID_PEMERIKSAAN).FirstOrDefault();
+                if (tKasus.ID_REKAM_MEDIS.HasValue) rekamMedis = db.REKAM_MEDIS.Where(x => x.ID_REKAM_MEDIS == tKasus.ID_REKAM_MEDIS).FirstOrDefault();
+            }
+          
+
+            if (rekamMedis == null) return Ok();
+
+            result.IdPemeriksaan = historyMedis.ID_PEMERIKSAAN.GetValueOrDefault();
+            result.IdRekamMedis = rekamMedis.ID_REKAM_MEDIS;
+            result.Gejala = rekamMedis.GEJALA;
+            result.Tindakan = rekamMedis.TINDAKAN;
+            result.Diagnosa = rekamMedis.DIAGNOSA;
+            result.HasilTestLab = rekamMedis.HASIL_TEST_LAB;
+
+            return Ok(result);
+        }
+
+        [Route("api/pasien/recentordermedis")]
+        [Authorize(Roles = "Super Admin,Pasien")]
+        [ResponseType(typeof(APIListResponse<VW_ORDER_MEDIS>))]
+        public IHttpActionResult GetOrderMedisList(string search, string sort, int limit, int offset)
+        {
+            var pageSize = limit;
+            var pageNumber = offset;
+            var totalRecord = 0;
+            var result = new List<VW_ORDER_MEDIS>();
+
+            var historyMedis = new VW_HISTORY_MEDIS_PASIEN();
+            var rekamMedis = new REKAM_MEDIS();
+
+            var identity = (ClaimsIdentity)User.Identity;
+            var roles = identity.Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault();
+            if (roles.Value == "Pasien")
+            {
+                var username = identity.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault().Value;
+                var pasien = db.PASIENs.Where(x => x.USER.USERNAME == username).FirstOrDefault();
+
+                historyMedis = db.VW_HISTORY_MEDIS_PASIEN.Where(x => x.ID_PASIEN == pasien.ID_PASIEN).OrderByDescending(x => x.TGL_MASUK).FirstOrDefault();
+                result = db.VW_ORDER_MEDIS.Where(x => x.ID_PEMERIKSAAN == historyMedis.ID_PEMERIKSAAN)
+                       .OrderByDescending(x => x.ID_ORDER).ThenBy(x => x.ID_PEMERIKSAAN)
+                       .Skip(GetSkip(pageNumber, pageSize))
+                       .Take(pageSize).ToList();
+
+                totalRecord = db.VW_ORDER_MEDIS.Where(x => x.ID_PEMERIKSAAN == historyMedis.ID_PEMERIKSAAN).Count();
+            }
+            else
+            {
+                historyMedis = db.VW_HISTORY_MEDIS_PASIEN.OrderByDescending(x => x.TGL_MASUK).ThenBy(x => x.PASIEN).FirstOrDefault();
+                result = db.VW_ORDER_MEDIS.Where(x => x.ID_PEMERIKSAAN == historyMedis.ID_PEMERIKSAAN)
+                       .OrderByDescending(x => x.ID_ORDER).ThenBy(x => x.ID_PEMERIKSAAN)
+                       .Skip(GetSkip(pageNumber, pageSize))
+                       .Take(pageSize).ToList();
+
+                totalRecord = db.VW_ORDER_MEDIS.Where(x => x.ID_PEMERIKSAAN == historyMedis.ID_PEMERIKSAAN).Count();
+            }
+
+            var totalPage = (totalRecord + pageSize - 1) / pageSize;
+
+            return Ok(new APIListResponse<VW_ORDER_MEDIS>(false, HttpStatusCode.OK.ToString(), HttpStatusCode.OK.ToString(), result, totalRecord, totalPage));
         }
 
         [Route("api/pasien/historymedis")]
