@@ -262,6 +262,7 @@
     <Compile Include="Models\Response\APIListResponse.cs" />
     <Compile Include="Models\Response\APIResponse.cs" />
     <Compile Include="Models\Response\AutoCompleteResponse.cs" />
+    <Compile Include="Models\Response\PasienResponse.cs" />
     <Compile Include="Models\Response\RegisterKasusVwModel.cs" />
     <Compile Include="Models\ViewModel\VwAggregateChart.cs" />
     <Compile Include="Models\ViewModel\VwAggregateStatusPasien.cs" />

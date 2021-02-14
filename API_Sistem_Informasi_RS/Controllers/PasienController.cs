@@ -28,6 +28,26 @@ namespace API_Sistem_Informasi_RS.Controllers
             return Ok(result);
         }
 
+        [Route("api/pasien/list")]
+        [ResponseType(typeof(PasienResponse))]
+        [Authorize(Roles = "Super Admin,Frontdesk")]
+        public IHttpActionResult GetPasienList()
+        {
+            var result = db.PASIENs.Select(x => new PasienResponse { 
+                NAMA = x.NAMA,
+                ALAMAT = x.ALAMAT,
+                JENIS_KELAMIN = x.JENIS_KELAMIN,
+                ID_PASIEN = x.ID_PASIEN,
+                ID_USER = x.ID_USER,
+                TGL_LAHIR = x.TGL_LAHIR,
+                TEMPAT_LAHIR = x.TEMPAT_LAHIR,
+                TELP = x.TELP,
+                EMAIL = x.USER.EMAIL
+            }).AsEnumerable();
+
+            return Ok(result);
+        }
+
         [Route("api/pasien/recent")]
         [ResponseType(typeof(VW_HISTORY_MEDIS_PASIEN))]
         [Authorize(Roles = "Super Admin,Pasien")]

@@ -26,7 +26,6 @@ namespace API_Sistem_Informasi_RS
         public string NAMA { get; set; }
         public string PENDIDIKAN { get; set; }
         public string JENIS_KELAMIN { get; set; }
-    
         public virtual SPESIALISASI SPESIALISASI { get; set; }
         public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

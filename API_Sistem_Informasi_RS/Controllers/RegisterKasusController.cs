@@ -159,21 +159,73 @@ namespace API_Sistem_Informasi_RS.Controllers
 
                 var pasien = new PASIEN();
                 var user = new USER();
-                while (true)
+
+                if (registerKasusRequest.JenisPasien == "1")
                 {
-                    pasien.ID_PASIEN = _random.Next(1, 999999999);
-                    var count = db.PASIENs.Where(rk => rk.ID_PASIEN == pasien.ID_PASIEN).Count();
+                    while (true)
+                    {
+                        pasien.ID_PASIEN = _random.Next(1, 999999999);
+                        var count = db.PASIENs.Where(rk => rk.ID_PASIEN == pasien.ID_PASIEN).Count();
 
-                    if (count == 0) break;
-                }
+                        if (count == 0) break;
+                    }
 
-                while (true)
-                {
-                    user.ID_USER = _random.Next(1, 999999999);
-                    var count = db.USERS.Where(rk => rk.ID_USER == user.ID_USER).Count();
+                    while (true)
+                    {
+                        user.ID_USER = _random.Next(1, 999999999);
+                        var count = db.USERS.Where(rk => rk.ID_USER == user.ID_USER).Count();
 
-                    if (count == 0) break;
-                }
+                        if (count == 0) break;
+                    }
+
+                    pasien.ID_USER = user.ID_USER;
+                    pasien.ALAMAT = registerKasusRequest.Alamat;
+                    pasien.NAMA = registerKasusRequest.Nama;
+                    pasien.TGL_LAHIR = registerKasusRequest.TglLahir;
+                    pasien.TEMPAT_LAHIR = registerKasusRequest.TempatLahir;
+                    pasien.TELP = registerKasusRequest.Telp;
+                    pasien.JENIS_KELAMIN = registerKasusRequest.JenisKelamin;
+
+                    db.PASIENs.Add(pasien);
+
+                    user.ACTIVE_YN = "Y";
+                    user.EMAIL = registerKasusRequest.Email;
+
+                    var indexAt = registerKasusRequest.Email.IndexOf("@");
+                    if (indexAt == -1) return BadRequest("Email Tidak Valid");
+
+                    user.USERNAME = registerKasusRequest.Email.Substring(0, indexAt);
+                    user.FULL_NAME = registerKasusRequest.Nama;
+
+                    var tempPassword = "P@ssw0rd";
+                    user.PASSWORD = Encryptor.Base64Encode(Encryptor.MD5Hash(tempPassword));
+
+                    db.USERS.Add(user);
+
+                    transactKasus.ID_PASIEN = pasien.ID_PASIEN;
+                    kasus.STATUS_KASUS = Kasus.StatusKasus.Registered.ToString();
+
+                    kasusStat.ID_KASUS = kasus.ID_KASUS;
+                    kasusStat.STATUS_KASUS = kasus.STATUS_KASUS;
+                    kasusStat.TGL = DateTime.Now;
+
+                    db.T_KASUS.Add(transactKasus);
+                    db.KASUS.Add(kasus);
+                    db.KASUS_STAT.Add(kasusStat);
+
+                    await db.SaveChangesAsync();
+
+                    db.Database.ExecuteSqlCommand($"INSERT INTO ROLE_USERS (ID_USER, ID_ROLE) VALUES ({user.ID_USER}, 4)");
+
+                    await db.SaveChangesAsync();
+
+                    SendEmail(registerKasusRequest.Email, user.USERNAME, tempPassword);
+
+                    return Ok();
+                } 
+
+                pasien = db.PASIENs.Where(x => x.ID_PASIEN == registerKasusRequest.IdPasien).FirstOrDefault();
+                user = db.USERS.Where(x => x.ID_USER == registerKasusRequest.IdUser).FirstOrDefault();
 
                 transactKasus.ID_PASIEN = pasien.ID_PASIEN;
                 kasus.STATUS_KASUS = Kasus.StatusKasus.Registered.ToString();
@@ -182,42 +234,13 @@ namespace API_Sistem_Informasi_RS.Controllers
                 kasusStat.STATUS_KASUS = kasus.STATUS_KASUS;
                 kasusStat.TGL = DateTime.Now;
 
-                pasien.ID_USER = user.ID_USER;
-                pasien.ALAMAT = registerKasusRequest.Alamat;
-                pasien.NAMA = registerKasusRequest.Nama;
-                pasien.TGL_LAHIR = registerKasusRequest.TglLahir;
-                pasien.TEMPAT_LAHIR = registerKasusRequest.TempatLahir;
-                pasien.TELP = registerKasusRequest.Telp;
-                pasien.JENIS_KELAMIN = registerKasusRequest.JenisKelamin;
-
-                db.PASIENs.Add(pasien);
                 db.T_KASUS.Add(transactKasus);
                 db.KASUS.Add(kasus);
                 db.KASUS_STAT.Add(kasusStat);
 
-                user.ACTIVE_YN = "Y";
-                user.EMAIL = registerKasusRequest.Email;
-
-                var indexAt = registerKasusRequest.Email.IndexOf("@");
-                if (indexAt == -1) return BadRequest("Email Tidak Valid");
-
-                user.USERNAME = registerKasusRequest.Email.Substring(0, indexAt);
-                user.FULL_NAME = registerKasusRequest.Nama;
-
-                var tempPassword = "P@ssw0rd";
-                user.PASSWORD = Encryptor.Base64Encode(Encryptor.MD5Hash(tempPassword));
-
-                db.USERS.Add(user);
-
-                SendEmail(registerKasusRequest.Email, user.USERNAME, tempPassword);
-
                 await db.SaveChangesAsync();
 
-                db.Database.ExecuteSqlCommand($"INSERT INTO ROLE_USERS (ID_USER, ID_ROLE) VALUES ({user.ID_USER}, 4)");
-
-                await db.SaveChangesAsync();
-
-                return Ok();
+                return Ok();                   
             }
             catch (Exception e)
             {

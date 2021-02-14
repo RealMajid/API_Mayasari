@@ -22,5 +22,8 @@ namespace API_Sistem_Informasi_RS.Models.Request
         public int BeratBadan { get; set; }
         public int TensiDarah { get; set; }
         public int Klinik { get; set; }
+        public string JenisPasien { get; set; }
+        public int? IdPasien { get; set; }
+        public int? IdUser { get; set; }
     }
 }
