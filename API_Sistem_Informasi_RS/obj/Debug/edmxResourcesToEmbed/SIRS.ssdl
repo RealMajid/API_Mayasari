@@ -11,6 +11,18 @@
     <Property Name="PENDIDIKAN" Type="varchar" MaxLength="5" />
     <Property Name="JENIS_KELAMIN" Type="varchar" MaxLength="1" />
   </EntityType>
+  <EntityType Name="JADWAL">
+    <Key>
+      <PropertyRef Name="ID_JADWAL" />
+    </Key>
+    <Property Name="ID_JADWAL" Type="int" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="int" Nullable="false" />
+    <Property Name="MULAI" Type="datetime" />
+    <Property Name="SELESAI" Type="datetime" />
+    <Property Name="KEPERLUAN" Type="varchar" MaxLength="100" />
+    <Property Name="HASIL_PEMERIKSAAN" Type="varchar" MaxLength="150" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
   <EntityType Name="KASUS">
     <Key>
       <PropertyRef Name="ID_KASUS" />
@@ -288,6 +300,18 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_JADWAL_PEMERIKSAAN">
+    <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="1" />
+    <End Role="JADWAL" Type="Self.JADWAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Principal>
+      <Dependent Role="JADWAL">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_KASUS_STAT_KASUS">
     <End Role="KASUS" Type="Self.KASUS" Multiplicity="1" />
     <End Role="KASUS_STAT" Type="Self.KASUS_STAT" Multiplicity="*" />
@@ -458,6 +482,7 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
   </Association>
   <EntityContainer Name="mayasariModelStoreContainer">
     <EntitySet Name="DOKTER" EntityType="Self.DOKTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JADWAL" EntityType="Self.JADWAL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KASUS" EntityType="Self.KASUS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KASUS_STAT" EntityType="Self.KASUS_STAT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KLINIK" EntityType="Self.KLINIK" Schema="dbo" store:Type="Tables" />
@@ -551,6 +576,10 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
     <AssociationSet Name="FK_DOKTER_USERS" Association="Self.FK_DOKTER_USERS">
       <End Role="USERS" EntitySet="USERS" />
       <End Role="DOKTER" EntitySet="DOKTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JADWAL_PEMERIKSAAN" Association="Self.FK_JADWAL_PEMERIKSAAN">
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAAN" />
+      <End Role="JADWAL" EntitySet="JADWAL" />
     </AssociationSet>
     <AssociationSet Name="FK_KASUS_STAT_KASUS" Association="Self.FK_KASUS_STAT_KASUS">
       <End Role="KASUS" EntitySet="KASUS" />

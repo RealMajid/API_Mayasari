@@ -180,3 +180,14 @@ C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\
 C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\obj\Debug\RdlCompile.cache
 C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\obj\Debug\RdlCompile.compiled
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.Owin.dll
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.Owin.Security.dll
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Owin.dll
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.Owin.xml
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\DJPPR\source\repos\API_Sistem_Informasi_RS\API_Sistem_Informasi_RS\bin\Microsoft.Owin.Security.xml

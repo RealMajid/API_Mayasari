@@ -46,5 +46,6 @@ namespace API_Sistem_Informasi_RS
         public virtual DbSet<OBAT> OBATs { get; set; }
         public virtual DbSet<VW_ORDER_MEDIS> VW_ORDER_MEDIS { get; set; }
         public virtual DbSet<VW_MONITOR_LAB> VW_MONITOR_LAB { get; set; }
+        public virtual DbSet<JADWAL> JADWALs { get; set; }
     }
 }

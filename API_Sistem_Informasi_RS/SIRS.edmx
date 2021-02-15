@@ -16,6 +16,18 @@
           <Property Name="PENDIDIKAN" Type="varchar" MaxLength="5" />
           <Property Name="JENIS_KELAMIN" Type="varchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="JADWAL">
+          <Key>
+            <PropertyRef Name="ID_JADWAL" />
+          </Key>
+          <Property Name="ID_JADWAL" Type="int" Nullable="false" />
+          <Property Name="ID_PEMERIKSAAN" Type="int" Nullable="false" />
+          <Property Name="MULAI" Type="datetime" />
+          <Property Name="SELESAI" Type="datetime" />
+          <Property Name="KEPERLUAN" Type="varchar" MaxLength="100" />
+          <Property Name="HASIL_PEMERIKSAAN" Type="varchar" MaxLength="150" />
+          <Property Name="STATUS" Type="int" />
+        </EntityType>
         <EntityType Name="KASUS">
           <Key>
             <PropertyRef Name="ID_KASUS" />
@@ -293,6 +305,18 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_JADWAL_PEMERIKSAAN">
+          <End Role="PEMERIKSAAN" Type="Self.PEMERIKSAAN" Multiplicity="1" />
+          <End Role="JADWAL" Type="Self.JADWAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEMERIKSAAN">
+              <PropertyRef Name="ID_PEMERIKSAAN" />
+            </Principal>
+            <Dependent Role="JADWAL">
+              <PropertyRef Name="ID_PEMERIKSAAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_KASUS_STAT_KASUS">
           <End Role="KASUS" Type="Self.KASUS" Multiplicity="1" />
           <End Role="KASUS_STAT" Type="Self.KASUS_STAT" Multiplicity="*" />
@@ -463,6 +487,7 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
         </Association>
         <EntityContainer Name="mayasariModelStoreContainer">
           <EntitySet Name="DOKTER" EntityType="Self.DOKTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JADWAL" EntityType="Self.JADWAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KASUS" EntityType="Self.KASUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KASUS_STAT" EntityType="Self.KASUS_STAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KLINIK" EntityType="Self.KLINIK" Schema="dbo" store:Type="Tables" />
@@ -556,6 +581,10 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
           <AssociationSet Name="FK_DOKTER_USERS" Association="Self.FK_DOKTER_USERS">
             <End Role="USERS" EntitySet="USERS" />
             <End Role="DOKTER" EntitySet="DOKTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JADWAL_PEMERIKSAAN" Association="Self.FK_JADWAL_PEMERIKSAAN">
+            <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAAN" />
+            <End Role="JADWAL" EntitySet="JADWAL" />
           </AssociationSet>
           <AssociationSet Name="FK_KASUS_STAT_KASUS" Association="Self.FK_KASUS_STAT_KASUS">
             <End Role="KASUS" EntitySet="KASUS" />
@@ -704,6 +733,7 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
           <NavigationProperty Name="DOKTER" Relationship="Self.FK_PEMERIKSAAN_DOKTER" FromRole="PEMERIKSAAN" ToRole="DOKTER" />
           <NavigationProperty Name="ORDER_MEDIS" Relationship="Self.FK_ORDER_MEDIS_PEMERIKSAAN" FromRole="PEMERIKSAAN" ToRole="ORDER_MEDIS" />
           <NavigationProperty Name="REKAM_MEDIS" Relationship="Self.FK_PEMERIKSAAN_REKAM_MEDIS" FromRole="PEMERIKSAAN" ToRole="REKAM_MEDIS" />
+          <NavigationProperty Name="JADWALs" Relationship="mayasariModel.FK_JADWAL_PEMERIKSAAN" FromRole="PEMERIKSAAN" ToRole="JADWAL" />
         </EntityType>
         <EntityType Name="REGISTER_KASUS">
           <Key>
@@ -1032,6 +1062,11 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
           </AssociationSet>
           <EntitySet Name="VW_ORDER_MEDIS" EntityType="mayasariModel.VW_ORDER_MEDIS" />
           <EntitySet Name="VW_MONITOR_LAB" EntityType="mayasariModel.VW_MONITOR_LAB" />
+          <EntitySet Name="JADWALs" EntityType="mayasariModel.JADWAL" />
+          <AssociationSet Name="FK_JADWAL_PEMERIKSAAN" Association="mayasariModel.FK_JADWAL_PEMERIKSAAN">
+            <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAANs" />
+            <End Role="JADWAL" EntitySet="JADWALs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="VW_ALOKASI_DOKTER">
           <Key>
@@ -1147,6 +1182,31 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
           <Property Name="STATUS_KASUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TGL_PEMERIKSAAN" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="JADWAL">
+          <Key>
+            <PropertyRef Name="ID_JADWAL" />
+          </Key>
+          <Property Name="ID_JADWAL" Type="Int32" Nullable="false" />
+          <Property Name="ID_PEMERIKSAAN" Type="Int32" Nullable="false" />
+          <Property Name="MULAI" Type="DateTime" Precision="3" />
+          <Property Name="SELESAI" Type="DateTime" Precision="3" />
+          <Property Name="KEPERLUAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HASIL_PEMERIKSAAN" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="Int32" />
+          <NavigationProperty Name="PEMERIKSAAN" Relationship="mayasariModel.FK_JADWAL_PEMERIKSAAN" FromRole="JADWAL" ToRole="PEMERIKSAAN" />
+        </EntityType>
+        <Association Name="FK_JADWAL_PEMERIKSAAN">
+          <End Type="mayasariModel.PEMERIKSAAN" Role="PEMERIKSAAN" Multiplicity="1" />
+          <End Type="mayasariModel.JADWAL" Role="JADWAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEMERIKSAAN">
+              <PropertyRef Name="ID_PEMERIKSAAN" />
+            </Principal>
+            <Dependent Role="JADWAL">
+              <PropertyRef Name="ID_PEMERIKSAAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1409,6 +1469,19 @@ warning 6002: The table/view 'klinik.dbo.VW_REGISTER_KASUS' does not have a prim
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_PEMERIKSAAN" ColumnName="ID_PEMERIKSAAN" />
                 <ScalarProperty Name="ID_ORDER" ColumnName="ID_ORDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JADWALs">
+            <EntityTypeMapping TypeName="mayasariModel.JADWAL">
+              <MappingFragment StoreEntitySet="JADWAL">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="HASIL_PEMERIKSAAN" ColumnName="HASIL_PEMERIKSAAN" />
+                <ScalarProperty Name="KEPERLUAN" ColumnName="KEPERLUAN" />
+                <ScalarProperty Name="SELESAI" ColumnName="SELESAI" />
+                <ScalarProperty Name="MULAI" ColumnName="MULAI" />
+                <ScalarProperty Name="ID_PEMERIKSAAN" ColumnName="ID_PEMERIKSAAN" />
+                <ScalarProperty Name="ID_JADWAL" ColumnName="ID_JADWAL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

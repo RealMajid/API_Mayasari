@@ -41,6 +41,8 @@
         <AssociationConnector Association="mayasariModel.FK_ORDER_MEDIS_OBAT" />
         <EntityTypeShape EntityType="mayasariModel.VW_ORDER_MEDIS" Width="2.125" PointX="12.5" PointY="13.5" />
         <EntityTypeShape EntityType="mayasariModel.VW_MONITOR_LAB" Width="2.25" PointX="12.375" PointY="9.5" />
+        <EntityTypeShape EntityType="mayasariModel.JADWAL" Width="1.5" PointX="9.75" PointY="7.5" />
+        <AssociationConnector Association="mayasariModel.FK_JADWAL_PEMERIKSAAN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

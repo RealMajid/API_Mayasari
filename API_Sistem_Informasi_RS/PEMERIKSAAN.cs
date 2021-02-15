@@ -18,6 +18,7 @@ namespace API_Sistem_Informasi_RS
         public PEMERIKSAAN()
         {
             this.ORDER_MEDIS = new HashSet<ORDER_MEDIS>();
+            this.JADWALs = new HashSet<JADWAL>();
         }
     
         public int ID_PEMERIKSAAN { get; set; }
@@ -30,5 +31,7 @@ namespace API_Sistem_Informasi_RS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDER_MEDIS> ORDER_MEDIS { get; set; }
         public virtual REKAM_MEDIS REKAM_MEDIS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<JADWAL> JADWALs { get; set; }
     }
 }

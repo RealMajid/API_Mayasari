@@ -260,5 +260,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="JADWALs">
+      <EntityTypeMapping TypeName="mayasariModel.JADWAL">
+        <MappingFragment StoreEntitySet="JADWAL">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="HASIL_PEMERIKSAAN" ColumnName="HASIL_PEMERIKSAAN" />
+          <ScalarProperty Name="KEPERLUAN" ColumnName="KEPERLUAN" />
+          <ScalarProperty Name="SELESAI" ColumnName="SELESAI" />
+          <ScalarProperty Name="MULAI" ColumnName="MULAI" />
+          <ScalarProperty Name="ID_PEMERIKSAAN" ColumnName="ID_PEMERIKSAAN" />
+          <ScalarProperty Name="ID_JADWAL" ColumnName="ID_JADWAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

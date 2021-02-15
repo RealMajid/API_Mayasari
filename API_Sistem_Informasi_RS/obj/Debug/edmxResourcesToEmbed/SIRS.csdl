@@ -86,6 +86,7 @@
     <NavigationProperty Name="DOKTER" Relationship="Self.FK_PEMERIKSAAN_DOKTER" FromRole="PEMERIKSAAN" ToRole="DOKTER" />
     <NavigationProperty Name="ORDER_MEDIS" Relationship="Self.FK_ORDER_MEDIS_PEMERIKSAAN" FromRole="PEMERIKSAAN" ToRole="ORDER_MEDIS" />
     <NavigationProperty Name="REKAM_MEDIS" Relationship="Self.FK_PEMERIKSAAN_REKAM_MEDIS" FromRole="PEMERIKSAAN" ToRole="REKAM_MEDIS" />
+    <NavigationProperty Name="JADWALs" Relationship="mayasariModel.FK_JADWAL_PEMERIKSAAN" FromRole="PEMERIKSAAN" ToRole="JADWAL" />
   </EntityType>
   <EntityType Name="REGISTER_KASUS">
     <Key>
@@ -414,6 +415,11 @@
     </AssociationSet>
     <EntitySet Name="VW_ORDER_MEDIS" EntityType="mayasariModel.VW_ORDER_MEDIS" />
     <EntitySet Name="VW_MONITOR_LAB" EntityType="mayasariModel.VW_MONITOR_LAB" />
+    <EntitySet Name="JADWALs" EntityType="mayasariModel.JADWAL" />
+    <AssociationSet Name="FK_JADWAL_PEMERIKSAAN" Association="mayasariModel.FK_JADWAL_PEMERIKSAAN">
+      <End Role="PEMERIKSAAN" EntitySet="PEMERIKSAANs" />
+      <End Role="JADWAL" EntitySet="JADWALs" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="VW_ALOKASI_DOKTER">
     <Key>
@@ -529,4 +535,29 @@
     <Property Name="STATUS_KASUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="TGL_PEMERIKSAAN" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
+  <EntityType Name="JADWAL">
+    <Key>
+      <PropertyRef Name="ID_JADWAL" />
+    </Key>
+    <Property Name="ID_JADWAL" Type="Int32" Nullable="false" />
+    <Property Name="ID_PEMERIKSAAN" Type="Int32" Nullable="false" />
+    <Property Name="MULAI" Type="DateTime" Precision="3" />
+    <Property Name="SELESAI" Type="DateTime" Precision="3" />
+    <Property Name="KEPERLUAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="HASIL_PEMERIKSAAN" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="PEMERIKSAAN" Relationship="mayasariModel.FK_JADWAL_PEMERIKSAAN" FromRole="JADWAL" ToRole="PEMERIKSAAN" />
+  </EntityType>
+  <Association Name="FK_JADWAL_PEMERIKSAAN">
+    <End Type="mayasariModel.PEMERIKSAAN" Role="PEMERIKSAAN" Multiplicity="1" />
+    <End Type="mayasariModel.JADWAL" Role="JADWAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEMERIKSAAN">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Principal>
+      <Dependent Role="JADWAL">
+        <PropertyRef Name="ID_PEMERIKSAAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
