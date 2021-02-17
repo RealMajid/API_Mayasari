@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4e3063dd7e0d4577b337e689b2a596eb" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="4e3063dd7e0d4577b337e689b2a596eb" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="mayasariModel.DOKTER" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.KASU" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.KASUS_STAT" Width="1.5" PointX="7.5" PointY="15.25" IsExpanded="true" />
@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="mayasariModel.SPESIALISASI" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.T_KASUS" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayasariModel.USER" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayasariModel.USER" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mayasariModel.VW_REGISTER_KASUS" Width="1.5" PointX="12.5" PointY="16.625" IsExpanded="true" />
         <AssociationConnector Association="mayasariModel.FK_DOKTER_SPESIALISASI" ManuallyRouted="false" />
         <AssociationConnector Association="mayasariModel.FK_DOKTER_USERS" ManuallyRouted="false" />
@@ -33,7 +33,7 @@
         <AssociationConnector Association="mayasariModel.FK_PEMERIKSAAN_REKAM_MEDIS" ManuallyRouted="false" />
         <AssociationConnector Association="mayasariModel.FK_T_KASUS_REGISTER_KASUS" ManuallyRouted="false" />
         <AssociationConnector Association="mayasariModel.ROLE_USERS" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mayasariModel.VW_ALOKASI_DOKTER" Width="1.875" PointX="12.25" PointY="2.875" />
+        <EntityTypeShape EntityType="mayasariModel.VW_ALOKASI_DOKTER" Width="1.875" PointX="12.625" PointY="2.5" />
         <EntityTypeShape EntityType="mayasariModel.VW_HISTORY_MEDIS_PASIEN" Width="2.375" PointX="12.375" PointY="5.25" />
         <EntityTypeShape EntityType="mayasariModel.LAB" Width="1.5" PointX="7.5" PointY="18" />
         <EntityTypeShape EntityType="mayasariModel.OBAT" Width="1.5" PointX="7.375" PointY="11.875" />

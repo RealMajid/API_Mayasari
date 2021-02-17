@@ -35,7 +35,7 @@ namespace API_Sistem_Informasi_RS.Controllers
         }
 
         [ResponseType(typeof(REKAM_MEDIS))]
-        [Authorize(Roles = "Super Admin,Dokter")]
+        [Authorize(Roles = "Super Admin,Dokter,Lab")]
         [HttpPut]
         public async Task<IHttpActionResult> PutOrderMedis(int idRekamMedis, REKAM_MEDIS rekamMedis)
         {
